@@ -6,6 +6,7 @@ public class OnDrag : MonoBehaviour {
 
     private Vector3 screenPoint;
     private Vector3 offset;
+    public Rigidbody prefab;
     Rigidbody rb;
 
     void Awake()
@@ -24,9 +25,16 @@ public class OnDrag : MonoBehaviour {
     {
         Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
         Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
-        //transform.position = curPosition; classical movement
-        transform.position = new Vector3(Mathf.Round(curPosition.x), Mathf.Round(curPosition.y), Mathf.Round(curPosition.z));
+        //transform.position = curPosition; classical movement, allows object to be put anywhere
+        transform.position = new Vector3(Mathf.Round(curPosition.x), Mathf.Round(curPosition.y), Mathf.Round(curPosition.z)); //snaps to grid
         Debug.Log(transform.position);
+    }
+
+    void OnMouseUp()
+    {
+        Rigidbody rigidPrefab;
+        rigidPrefab = Instantiate(prefab, transform.position, transform.rotation) as Rigidbody;
+
     }
 
     void Update()
