@@ -7,13 +7,27 @@ public class OnDrag : MonoBehaviour {
     private Vector3 screenPoint;
     private Vector3 offset;
     public Rigidbody prefab;
+    private bool isFloating = true;
    
     void Start()
     {
         screenPoint = Camera.main.WorldToScreenPoint(transform.position);
         offset = transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
     }
+
+    void OnCollisionEnter(Collision other)
+    {
+        isFloating = false;
+        Debug.Log("Collided with " + other.transform.name);
+    }
+
+    void OnCollisionExit(Collision other)
+    {
+        isFloating = true;
+        Debug.Log("No longer in contact with " + other.transform.name);
+    }
     
+
     void Update()
     {
         Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
