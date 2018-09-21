@@ -8,6 +8,7 @@ public class OnDrag : MonoBehaviour {
     private Vector3 offset;
     public Rigidbody prefab;
     private bool isFloating = true;
+    private bool boxCollision = false;
    
     void Start()
     {
@@ -15,27 +16,39 @@ public class OnDrag : MonoBehaviour {
         offset = transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
     }
 
-    void OnCollisionEnter(Collision other)
+    void OnTriggerEnter(Collider other)
     {
-        isFloating = false;
+        boxCollision = true;
         Debug.Log("Collided with " + other.transform.name);
     }
 
-    void OnCollisionExit(Collision other)
+    void OnTriggerExit(Collider other)
     {
-        isFloating = true;
+        boxCollision = false;
         Debug.Log("No longer in contact with " + other.transform.name);
     }
     
 
     void Update()
     {
+        if (transform.position.y == 0f)
+            isFloating = false;
+        else
+            isFloating = true;
+
+       // Debug.Log("isFloating" + isFloating);
+       // Debug.Log("boxCollision" + boxCollision);
+
+
+        //positioning with mouse
         Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
         Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
         //transform.position = curPosition; classical movement, allows object to be put anywhere
         transform.position = new Vector3(Mathf.Round(curPosition.x), Mathf.Round(curPosition.y), Mathf.Round(curPosition.z)); //snaps to grid
         
-        if (Input.GetMouseButtonDown(0)) {
+
+        //create a new box
+        if (Input.GetMouseButtonDown(0) && (!isFloating || boxCollision) ) {
             Rigidbody rigidPrefab;
             rigidPrefab = Instantiate(prefab, transform.position, transform.rotation) as Rigidbody;
         }
