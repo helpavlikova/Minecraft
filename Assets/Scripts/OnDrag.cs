@@ -45,9 +45,7 @@ public class OnDrag : MonoBehaviour {
         {
             BuildMode();
         }
-        else
-        {
-        }
+
     }
 
     void BuildMode()
