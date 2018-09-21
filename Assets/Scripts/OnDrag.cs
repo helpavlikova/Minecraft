@@ -40,7 +40,6 @@ public class OnDrag : MonoBehaviour {
             GetComponent<Renderer>().enabled = !GetComponent<Renderer>().enabled; //togle visibility of the bulding box
         }
 
-
         if (buildMode)
         {
             BuildMode();

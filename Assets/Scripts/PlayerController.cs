@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour {
 
     Rigidbody rb;
     Vector3 moveDirection;
+    private bool boxCollision;
 
     void Awake()
     {
@@ -39,4 +40,12 @@ public class PlayerController : MonoBehaviour {
 
         rb.velocity += yVelFix; //if we didnt do this, the y velocity would be 0, because it is not set in moveDirection
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        boxCollision = true;
+        Debug.Log("Player collided with " + other.transform.name);
+        other.attachedRigidbody.isKinematic = false;
+    }
+
 }
