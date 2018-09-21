@@ -28,12 +28,12 @@ public class boxScript : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
         playerIsClose = true;
-        Debug.Log("Close to box");
+       // Debug.Log("Close to box");
     }
 
     void OnTriggerExit(Collider other)
     {
         playerIsClose = false;
-        Debug.Log("No longer in close to box");
+      //  Debug.Log("No longer in close to box");
     }
 }

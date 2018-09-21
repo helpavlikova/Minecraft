@@ -6,13 +6,19 @@ public class OnDrag : MonoBehaviour {
 
     private Vector3 screenPoint;
     private Vector3 offset;
-    public Rigidbody prefab;
+    public Rigidbody redBox;
+    public Rigidbody greenBox;
+    public Rigidbody blueBox;
+    public Rigidbody yellowBox;
     private bool isFloating = true;
     private bool boxCollision = false;
     private bool buildMode = true;
+    private enum boxColor {red, green, blue, yellow};
+    private Rigidbody prefab;
    
     void Start()
     {
+        prefab = greenBox;
         screenPoint = Camera.main.WorldToScreenPoint(transform.position);
         offset = transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
     }
@@ -33,11 +39,34 @@ public class OnDrag : MonoBehaviour {
     void Update()
     {
 
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("E key pressed");
+            buildMode = !buildMode; //toggle buildmode
+            GetComponent<Renderer>().enabled = !GetComponent<Renderer>().enabled; //toggle visibility of the bulding box
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            prefab = redBox;
+        }
+        
+
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            prefab = greenBox;
+        }
+
         if (Input.GetKeyDown(KeyCode.B))
         {
-            Debug.Log("B key pressed");
-            buildMode = !buildMode; //toggle buildmode
-            GetComponent<Renderer>().enabled = !GetComponent<Renderer>().enabled; //togle visibility of the bulding box
+            prefab = blueBox;
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            prefab = yellowBox;
         }
 
         if (buildMode)
@@ -53,11 +82,7 @@ public class OnDrag : MonoBehaviour {
             isFloating = false;
         else
             isFloating = true;
-
-        // Debug.Log("isFloating" + isFloating);
-        // Debug.Log("boxCollision" + boxCollision);
-
-
+        
         //positioning the buildingbox with mouse
         Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
         Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;

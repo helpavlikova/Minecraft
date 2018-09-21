@@ -181,6 +181,30 @@ Prefab:
       propertyPath: m_UseGravity
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114228636158149242, guid: 4fb882a501a672b4c810e1c1fdb85cdc,
+        type: 2}
+      propertyPath: greenBox
+      value: 
+      objectReference: {fileID: 54469574629460468, guid: 93963156f624c7b49ac70ec183f3820b,
+        type: 2}
+    - target: {fileID: 114228636158149242, guid: 4fb882a501a672b4c810e1c1fdb85cdc,
+        type: 2}
+      propertyPath: redBox
+      value: 
+      objectReference: {fileID: 54224896785771760, guid: ab08baba37846c946be3c13439e4720f,
+        type: 2}
+    - target: {fileID: 114228636158149242, guid: 4fb882a501a672b4c810e1c1fdb85cdc,
+        type: 2}
+      propertyPath: yellowBox
+      value: 
+      objectReference: {fileID: 54249688276105930, guid: 959d943982fa0fc4b949706fbb4a55e7,
+        type: 2}
+    - target: {fileID: 114228636158149242, guid: 4fb882a501a672b4c810e1c1fdb85cdc,
+        type: 2}
+      propertyPath: blueBox
+      value: 
+      objectReference: {fileID: 54581058140545868, guid: 96ec26f72a05e8f41ac723d955603389,
+        type: 2}
     m_RemovedComponents:
     - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 4fb882a501a672b4c810e1c1fdb85cdc, type: 2}
@@ -655,4 +679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b346626f48a6fc48bf4f860d5afa918, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 54469574629460468, guid: 93963156f624c7b49ac70ec183f3820b, type: 2}
+  redBox: {fileID: 54224896785771760, guid: ab08baba37846c946be3c13439e4720f, type: 2}
+  greenBox: {fileID: 54469574629460468, guid: 93963156f624c7b49ac70ec183f3820b, type: 2}
+  blueBox: {fileID: 54581058140545868, guid: 96ec26f72a05e8f41ac723d955603389, type: 2}
+  yellowBox: {fileID: 54249688276105930, guid: 959d943982fa0fc4b949706fbb4a55e7, type: 2}
