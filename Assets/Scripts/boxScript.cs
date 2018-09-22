@@ -6,11 +6,15 @@ public class boxScript : MonoBehaviour {
 
     public int hardness;
     private bool playerIsClose = false;
+    private ParticleSystem ps;
+    private ParticleSystem.EmissionModule emission;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    // Use this for initialization
+    void Start () {
+        ps = GetComponent<ParticleSystem>();
+        emission = ps.emission;
+        emission.enabled = false;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -18,6 +22,11 @@ public class boxScript : MonoBehaviour {
         {
             hardness--;
             Debug.Log(hardness);
+            emission.enabled = true;
+        }
+        else
+        {
+            emission.enabled = false;
         }
 
         if (hardness <= 0) {
