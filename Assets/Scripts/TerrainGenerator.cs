@@ -14,7 +14,6 @@ public class TerrainGenerator : MonoBehaviour {
     private int width = 50;
     private int height = 50;
     public int depth = 20; //height on Y axis
-    private float boxHeight;
 
     public float scale = 10f;
     public float offsetX;
@@ -23,7 +22,6 @@ public class TerrainGenerator : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        Rigidbody rigidPrefab;
 
         offsetX = Random.Range(0f, 99999f);
         offsetY = Random.Range(0f, 99999f);
@@ -32,13 +30,28 @@ public class TerrainGenerator : MonoBehaviour {
         {
             for (int j = 0; j < height; j++)
             {
-                boxHeight = Mathf.Round (calculateHeight(i, j));
+                float boxHeight = Mathf.Round (calculateHeight(i, j));
                 boxPosition = new Vector3(i, boxHeight, j);
-                rigidPrefab = Instantiate(redBox, boxPosition, transform.rotation) as Rigidbody;
                 Debug.Log(boxPosition.ToString("F4"));
+                generateBox(boxHeight);
             }
         }
 	}
+
+    void generateBox(float boxHeight)
+    {
+        Rigidbody rigidPrefab;
+
+        if (boxHeight < 3)
+            rigidPrefab = Instantiate(blueBox, boxPosition, transform.rotation) as Rigidbody;
+        else if (boxHeight < 5)
+            rigidPrefab = Instantiate(greenBox, boxPosition, transform.rotation) as Rigidbody;
+        else if (boxHeight < 7)
+            rigidPrefab = Instantiate(redBox, boxPosition, transform.rotation) as Rigidbody;
+        else
+            rigidPrefab = Instantiate(yellowBox, boxPosition, transform.rotation) as Rigidbody;
+
+    }
 
     float calculateHeight(int i, int j) {
         float result;

@@ -745,6 +745,8 @@ MonoBehaviour:
   yellowBox: {fileID: 54249688276105930, guid: 959d943982fa0fc4b949706fbb4a55e7, type: 2}
   depth: 20
   scale: 2
+  offsetX: 100
+  offsetY: 100
 --- !u!1 &868665192
 GameObject:
   m_ObjectHideFlags: 0
