@@ -11,8 +11,8 @@ public class TerrainGenerator : MonoBehaviour {
 
     private Vector3 boxPosition;
 
-    public int width = 256;
-    public int height = 256;
+    private int width = 25;
+    private int height = 25;
     public int depth = 20; //height on Y axis
     private float boxHeight;
 
@@ -29,7 +29,7 @@ public class TerrainGenerator : MonoBehaviour {
             {
                 boxHeight = Mathf.Round (calculateHeight(i, j));
                 boxPosition = new Vector3(i, boxHeight, j);
-               // rigidPrefab = Instantiate(redBox, boxPosition, transform.rotation) as Rigidbody;
+                rigidPrefab = Instantiate(redBox, boxPosition, transform.rotation) as Rigidbody;
                 Debug.Log(boxPosition.ToString("F4"));
             }
         }
