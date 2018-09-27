@@ -743,6 +743,8 @@ MonoBehaviour:
   greenBox: {fileID: 54469574629460468, guid: 93963156f624c7b49ac70ec183f3820b, type: 2}
   blueBox: {fileID: 54581058140545868, guid: 96ec26f72a05e8f41ac723d955603389, type: 2}
   yellowBox: {fileID: 54249688276105930, guid: 959d943982fa0fc4b949706fbb4a55e7, type: 2}
+  depth: 20
+  scale: 2
 --- !u!1 &868665192
 GameObject:
   m_ObjectHideFlags: 0

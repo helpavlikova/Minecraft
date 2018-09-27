@@ -11,17 +11,22 @@ public class TerrainGenerator : MonoBehaviour {
 
     private Vector3 boxPosition;
 
-    private int width = 25;
-    private int height = 25;
+    private int width = 50;
+    private int height = 50;
     public int depth = 20; //height on Y axis
     private float boxHeight;
 
-    public float scale = 20F;
+    public float scale = 10f;
+    public float offsetX;
+    public float offsetY;
 
     // Use this for initialization
     void Start ()
     {
         Rigidbody rigidPrefab;
+
+        offsetX = Random.Range(0f, 99999f);
+        offsetY = Random.Range(0f, 99999f);
 
         for (int i = 0; i < width; i++)
         {
@@ -38,8 +43,8 @@ public class TerrainGenerator : MonoBehaviour {
     float calculateHeight(int i, int j) {
         float result;
 
-        float x = (float) i / width * scale;
-        float y = (float) j / height * scale;
+        float x = (float) i / width * scale + offsetX;
+        float y = (float) j / height * scale + offsetY;
 
         result =  Mathf.PerlinNoise(x, y) * 10;
         Debug.Log(result);
