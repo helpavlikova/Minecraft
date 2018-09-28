@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour {
     Vector3 moveDirection;
     private bool boxCollision;
 
+    private Vector3 jumpVector = new Vector3(0, 1.5f, 0);
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -29,6 +31,17 @@ public class PlayerController : MonoBehaviour {
     void FixedUpdate()
     {
         Move();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Jump();
+        }
+    }
+
+    void Jump()
+    {
+        rb.AddForce(jumpVector, ForceMode.Impulse);
+        Debug.Log("Jump");
     }
 
     void Move()

@@ -32,7 +32,7 @@ public class TerrainGenerator : MonoBehaviour {
             {
                 float boxHeight = Mathf.Round (calculateHeight(i, j));
                 boxPosition = new Vector3(i, boxHeight, j);
-                Debug.Log(boxPosition.ToString("F4"));
+               // Debug.Log(boxPosition.ToString("F4"));
                 generateBox(boxHeight);
             }
         }
@@ -60,7 +60,7 @@ public class TerrainGenerator : MonoBehaviour {
         float y = (float) j / height * scale + offsetY;
 
         result =  Mathf.PerlinNoise(x, y) * 10;
-        Debug.Log(result);
+       // Debug.Log(result);
 
         return result;
     }
