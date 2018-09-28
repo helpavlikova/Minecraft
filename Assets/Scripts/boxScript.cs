@@ -5,6 +5,9 @@ using UnityEngine;
 public class boxScript : MonoBehaviour {
 
     public int hardness;
+    public Material highlightMaterial;
+    private Material originalMaterial;
+
     private bool playerIsClose = false;
     private ParticleSystem ps;
     private ParticleSystem.EmissionModule emission;
@@ -14,6 +17,7 @@ public class boxScript : MonoBehaviour {
         ps = GetComponent<ParticleSystem>();
         emission = ps.emission;
         emission.enabled = false;
+        originalMaterial = GetComponent<MeshRenderer>().material;
     }
 	
 	// Update is called once per frame
@@ -36,13 +40,21 @@ public class boxScript : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        playerIsClose = true;
-       // Debug.Log("Close to box");
+        if (other.name == "PlayerCollider")
+        {
+            playerIsClose = true;
+            GetComponent<MeshRenderer>().material = highlightMaterial;
+            Debug.Log("Close to box");
+        }
     }
 
     void OnTriggerExit(Collider other)
     {
-        playerIsClose = false;
-      //  Debug.Log("No longer in close to box");
+        if (other.name == "PlayerCollider")
+        {
+            playerIsClose = false;
+            GetComponent<MeshRenderer>().material = originalMaterial;
+            Debug.Log("No longer in close to box");
+        }
     }
 }

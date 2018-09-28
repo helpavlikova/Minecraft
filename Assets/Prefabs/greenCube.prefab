@@ -168,6 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hardness: 100
+  highlightMaterial: {fileID: 2100000, guid: ffab37646b8ba8b41bd2b3a218598b79, type: 2}
 --- !u!198 &198955821045602594
 ParticleSystem:
   m_ObjectHideFlags: 1

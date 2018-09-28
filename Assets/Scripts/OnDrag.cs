@@ -82,13 +82,8 @@ public class OnDrag : MonoBehaviour {
             isFloating = false;
         else
             isFloating = true;
-        
-        //positioning the buildingbox with mouse
-        Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
-        Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
-        //transform.position = curPosition; classical movement, allows object to be put anywhere
-        transform.position = new Vector3(Mathf.Round(curPosition.x), Mathf.Round(curPosition.y), Mathf.Round(curPosition.z)); //snaps to grid
 
+        positionBox();
 
         //create a new box
         if (Input.GetMouseButtonDown(0) && (!isFloating || boxCollision))
@@ -96,5 +91,14 @@ public class OnDrag : MonoBehaviour {
             Rigidbody rigidPrefab;
             rigidPrefab = Instantiate(prefab, transform.position, transform.rotation) as Rigidbody;
         }
+    }
+
+    void positionBox()
+    {
+        //positioning the buildingbox with mouse
+        Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
+        Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
+        //transform.position = curPosition; classical movement, allows object to be put anywhere
+        transform.position = new Vector3(Mathf.Round(curPosition.x), Mathf.Round(curPosition.y), Mathf.Round(curPosition.z)); //snaps to grid
     }
 }

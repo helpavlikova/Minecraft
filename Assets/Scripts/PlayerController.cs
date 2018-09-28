@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
         boxCollision = true;
-        Debug.Log("Player collided with " + other.transform.name);
+      //  Debug.Log("Player collided with " + other.transform.name);
         other.attachedRigidbody.isKinematic = false;
     }
 
