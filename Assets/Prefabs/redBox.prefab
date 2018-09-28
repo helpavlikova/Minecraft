@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1f6d43c8f757b245b2f3599f8b967c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hardness: 250
+  hardness: 50
   highlightMaterial: {fileID: 2100000, guid: ffab37646b8ba8b41bd2b3a218598b79, type: 2}
 --- !u!198 &198059868987029046
 ParticleSystem:
