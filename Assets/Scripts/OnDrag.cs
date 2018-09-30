@@ -83,7 +83,7 @@ public class OnDrag : MonoBehaviour {
         else
             isFloating = true;
 
-        positionBox();
+        //positionBox();
 
         //create a new box
         if (Input.GetMouseButtonDown(0) && (!isFloating || boxCollision))
@@ -93,12 +93,14 @@ public class OnDrag : MonoBehaviour {
         }
     }
 
+    /*
     void positionBox()
     {
         //positioning the buildingbox with mouse
-        Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
-        Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
+        //  Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
+        Vector3 curPosition = transform.position + transform.TransformDirection(Vector3.forward);
         //transform.position = curPosition; classical movement, allows object to be put anywhere
         transform.position = new Vector3(Mathf.Round(curPosition.x), Mathf.Round(curPosition.y), Mathf.Round(curPosition.z)); //snaps to grid
     }
+    */
 }
