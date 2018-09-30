@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     public float walkSpeed;
-    public Transform buildingCube;
 
     Rigidbody rb;
     Vector3 moveDirection;
@@ -36,7 +35,6 @@ public class PlayerController : MonoBehaviour {
     {
         Move();
         checkForBoxCollision();
-        positionBox();
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -86,10 +84,5 @@ public class PlayerController : MonoBehaviour {
     }
 
 
-    void positionBox()
-    {
-        Vector3 curPosition = transform.position + transform.TransformDirection(Vector3.forward) * 5;
-        buildingCube. position = new Vector3(Mathf.Round(curPosition.x), Mathf.Round(curPosition.y), Mathf.Round(curPosition.z)); //snaps to grid
-    }
 
 }

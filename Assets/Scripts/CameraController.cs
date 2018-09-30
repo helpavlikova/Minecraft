@@ -21,14 +21,18 @@ public class CameraController : MonoBehaviour {
     float rotationY = 0f;
     float rotationX = 0f;
 
+    public Transform buildingCube;
+
     //offset of the camera
     private Vector3 offset;
+    private Vector3 hitPoint;
 
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked; //making the cursor invisible
 
         offset = Camera.main.transform.position - player.transform.position;
+
     }
 
     void Update()
@@ -52,5 +56,30 @@ public class CameraController : MonoBehaviour {
 
         Camera.main.transform.position = player.transform.position + offset;
 
+        cameraRayTest();
+
+        positionBox();
+
+    }
+
+    void cameraRayTest()
+    {
+        Ray ray = cam.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            print("I'm looking at " + hit.transform.name);
+            hitPoint = hit.point;
+        }
+
+        else
+            print("I'm looking at nothing!");
+        
+    }
+
+
+    void positionBox()
+    {
+        buildingCube.position = new Vector3(Mathf.Round(hitPoint.x), Mathf.Round(hitPoint.y), Mathf.Round(hitPoint.z)); //snaps to grid
     }
 }
