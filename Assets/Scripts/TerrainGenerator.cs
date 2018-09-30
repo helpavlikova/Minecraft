@@ -10,6 +10,8 @@ public class TerrainGenerator : MonoBehaviour {
     public Rigidbody blueBox;
     public Rigidbody yellowBox;
 
+    private GameObject[] gameObjects;
+
     private Vector3 boxPosition;
 
     private int width = 50;
@@ -30,16 +32,7 @@ public class TerrainGenerator : MonoBehaviour {
         Debug.Log("generated OffsetX " + offsetX);
         Debug.Log("generated OffsetY " + offsetY);
 
-        for (int i = 0; i < width; i++)
-        {
-            for (int j = 0; j < height; j++)
-            {
-                float boxHeight = Mathf.Round (calculateHeight(i, j));
-                boxPosition = new Vector3(i, boxHeight, j);
-               // Debug.Log(boxPosition.ToString("F4"));
-                generateBox(boxHeight);
-            }
-        }
+        generateTerrain();        
 	}
 
     void Update()
@@ -53,6 +46,20 @@ public class TerrainGenerator : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.L))
         {
             Load();
+        }
+    }
+
+    void generateTerrain()
+    {
+        for (int i = 0; i < width; i++)
+        {
+            for (int j = 0; j < height; j++)
+            {
+                float boxHeight = Mathf.Round(calculateHeight(i, j));
+                boxPosition = new Vector3(i, boxHeight, j);
+                // Debug.Log(boxPosition.ToString("F4"));
+                generateBox(boxHeight);
+            }
         }
     }
 
@@ -95,8 +102,20 @@ public class TerrainGenerator : MonoBehaviour {
         offsetX = loadedOffsets[0];
         offsetY = loadedOffsets[1];
 
+        DestroyEnvironment();
+        generateTerrain();
 
         Debug.Log("loaded OffsetX " + offsetX);
         Debug.Log("loaded OffsetY " + offsetY);
+    }
+
+    void DestroyEnvironment()
+    {
+        gameObjects = GameObject.FindGameObjectsWithTag("environment");
+
+        for (int i = 0; i < gameObjects.Length; i++)
+        {
+            Destroy(gameObjects[i]);
+        }
     }
 }
