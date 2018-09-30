@@ -53,12 +53,14 @@ public class PlayerController : MonoBehaviour {
         if (Physics.Raycast(rayStart, transform.TransformDirection(Vector3.forward), out hit, boxRange))
         {
             Debug.DrawRay(rayStart, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-            Debug.Log("Did Hit");
-        }
-        else
-        {
-            Debug.DrawRay(rayStart, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
-            Debug.Log("Did not Hit");
+
+            if (hit.collider.gameObject.GetComponent<boxScript>() != null)
+            {
+                boxScript box = hit.collider.gameObject.GetComponent<boxScript>(); //access the box variables
+                box.playerIsClose = true;
+            }
+
+            //Debug.Log("Did Hit");
         }
     }
 

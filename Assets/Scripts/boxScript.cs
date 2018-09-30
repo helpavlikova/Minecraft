@@ -8,7 +8,7 @@ public class boxScript : MonoBehaviour {
     public Material highlightMaterial;
     private Material originalMaterial;
 
-    private bool playerIsClose = false;
+    public bool playerIsClose = false;
     private ParticleSystem ps;
     private ParticleSystem.EmissionModule emission;
 
@@ -22,6 +22,14 @@ public class boxScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (playerIsClose)
+        {
+            GetComponent<MeshRenderer>().material = highlightMaterial;
+
+        }
+
+
         if (playerIsClose && Input.GetMouseButton(0))
         {
             hardness--;
