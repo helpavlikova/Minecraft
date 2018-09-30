@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour {
     Rigidbody rb;
     Vector3 moveDirection;
     private bool boxCollision;
-    public float boxRange = 100;
+    public float boxRange = 5;
 
 
     private Vector3 jumpVector = new Vector3(0, 1.5f, 0);
@@ -45,15 +45,19 @@ public class PlayerController : MonoBehaviour {
     void checkForBoxCollision()
     {
         RaycastHit hit;
+
+        //the raycast ray needs to start a little bit below the eye level of player in order to hit the closest boxes, otherwise the player would aim above them
+        Vector3 rayStart = new Vector3(transform.position.x, transform.position.y - 0.1f, transform.position.z);
+
         // Does the ray intersect any objects excluding the player layer
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
+        if (Physics.Raycast(rayStart, transform.TransformDirection(Vector3.forward), out hit, boxRange))
         {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+            Debug.DrawRay(rayStart, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
             Debug.Log("Did Hit");
         }
         else
         {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
+            Debug.DrawRay(rayStart, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
             Debug.Log("Did not Hit");
         }
     }
