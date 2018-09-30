@@ -11,6 +11,7 @@ public class TerrainGenerator : MonoBehaviour {
     public Rigidbody yellowBox;
 
     private GameObject[] gameObjects;
+    public BoxData[] customBoxes;
 
     private Vector3 boxPosition;
 

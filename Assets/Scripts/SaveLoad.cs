@@ -40,8 +40,10 @@ public static class SaveLoad {
 
 [Serializable]
 public class WorldData {
-    public float[] offsets;
+    public float[] offsets; //offsets to generate terrain via perlin noise
     public int[] beginCoords;
+
+    public BoxData[] boxes;
 
     public WorldData(TerrainGenerator terrainData)
     {
@@ -53,4 +55,12 @@ public class WorldData {
         beginCoords[0] = terrainData.beginX;
         beginCoords[1] = terrainData.beginY;
     }
+}
+
+public class BoxData
+{
+    public float positionX;
+    public float positionY;
+    public float positionZ;
+    private enum boxColor { red, green, blue, yellow };
 }

@@ -8,11 +8,13 @@ public class OnDrag : MonoBehaviour {
     public Rigidbody redBox;
     public Rigidbody greenBox;
     public Rigidbody blueBox;
-    public Rigidbody yellowBox;
+    public Rigidbody yellowBox;    
+
     private bool isFloating = true;
     private bool boxCollision = false;
     private bool buildMode = true;
     private enum boxColor {red, green, blue, yellow};
+    boxColor boxCol;
     private Rigidbody prefab;
    
     void Start()
@@ -48,23 +50,27 @@ public class OnDrag : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.R))
         {
             prefab = redBox;
+            boxCol = boxColor.red;
         }
         
 
         if (Input.GetKeyDown(KeyCode.G))
         {
             prefab = greenBox;
+            boxCol = boxColor.green;
         }
 
         if (Input.GetKeyDown(KeyCode.B))
         {
             prefab = blueBox;
+            boxCol = boxColor.blue;
         }
 
 
         if (Input.GetKeyDown(KeyCode.Y))
         {
             prefab = yellowBox;
+            boxCol = boxColor.yellow;
         }
 
         if (buildMode)
