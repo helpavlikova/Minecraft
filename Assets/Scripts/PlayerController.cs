@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour {
 
     Rigidbody rb;
     Vector3 moveDirection;
-    public float boxRange = 5;
+    public float boxRange = 10;
     private boxScript box;
 
 

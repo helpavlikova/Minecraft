@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class TerrainGenerator : MonoBehaviour {
 
     public Rigidbody redBox;
@@ -26,6 +27,9 @@ public class TerrainGenerator : MonoBehaviour {
         offsetX = Random.Range(0f, 99999f);
         offsetY = Random.Range(0f, 99999f);
 
+        Debug.Log("generated OffsetX " + offsetX);
+        Debug.Log("generated OffsetY " + offsetY);
+
         for (int i = 0; i < width; i++)
         {
             for (int j = 0; j < height; j++)
@@ -37,6 +41,20 @@ public class TerrainGenerator : MonoBehaviour {
             }
         }
 	}
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            Save();
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Load();
+        }
+    }
 
     void generateBox(float boxHeight)
     {
@@ -63,5 +81,22 @@ public class TerrainGenerator : MonoBehaviour {
        // Debug.Log(result);
 
         return result;
+    }
+
+    public void Save()
+    {
+        SaveLoad.Save(this);
+    }
+
+    public void Load()
+    {
+        float[] loadedOffsets = SaveLoad.Load();
+
+        offsetX = loadedOffsets[0];
+        offsetY = loadedOffsets[1];
+
+
+        Debug.Log("loaded OffsetX " + offsetX);
+        Debug.Log("loaded OffsetY " + offsetY);
     }
 }
