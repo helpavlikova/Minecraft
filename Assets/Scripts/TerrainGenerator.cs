@@ -22,6 +22,9 @@ public class TerrainGenerator : MonoBehaviour {
     public float offsetX;
     public float offsetY;
 
+    public int beginX = 0;
+    public int beginY = 0;
+
     // Use this for initialization
     void Start ()
     {
@@ -51,9 +54,9 @@ public class TerrainGenerator : MonoBehaviour {
 
     void generateTerrain()
     {
-        for (int i = 0; i < width; i++)
+        for (int i = beginX; i < width; i++)
         {
-            for (int j = 0; j < height; j++)
+            for (int j = beginY; j < height; j++)
             {
                 float boxHeight = Mathf.Round(calculateHeight(i, j));
                 boxPosition = new Vector3(i, boxHeight, j);
@@ -97,16 +100,23 @@ public class TerrainGenerator : MonoBehaviour {
 
     public void Load()
     {
-        float[] loadedOffsets = SaveLoad.Load();
+        WorldData loadedData = SaveLoad.Load();
+
+        float[] loadedOffsets = loadedData.offsets;
+        int[] loadedStartPoints = loadedData.beginCoords;
 
         offsetX = loadedOffsets[0];
         offsetY = loadedOffsets[1];
+
 
         DestroyEnvironment();
         generateTerrain();
 
         Debug.Log("loaded OffsetX " + offsetX);
         Debug.Log("loaded OffsetY " + offsetY);
+
+        Debug.Log("loaded startpoint X " + loadedStartPoints[0]);
+        Debug.Log("loaded startpoint Y " + loadedStartPoints[1]);
     }
 
     void DestroyEnvironment()

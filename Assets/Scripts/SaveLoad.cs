@@ -17,7 +17,7 @@ public static class SaveLoad {
         file.Close();
     }
 
-    public static float[] Load()
+    public static WorldData Load()
     {
         if (File.Exists(Application.persistentDataPath + "/savedGames.sv"))
         {
@@ -26,12 +26,12 @@ public static class SaveLoad {
             WorldData data = bf.Deserialize(file) as WorldData;
 
             file.Close();
-            return data.offsets;
+            return data;
         }
         else
         {
             Debug.Log("File does not exist yet");
-            return new float[2];
+            return null;
         }
 
     }
@@ -41,11 +41,16 @@ public static class SaveLoad {
 [Serializable]
 public class WorldData {
     public float[] offsets;
+    public int[] beginCoords;
 
     public WorldData(TerrainGenerator terrainData)
     {
         offsets = new float[2];
         offsets[0] = terrainData.offsetX;
         offsets[1] = terrainData.offsetY;
+
+        beginCoords = new int[2];
+        beginCoords[0] = terrainData.beginX;
+        beginCoords[1] = terrainData.beginY;
     }
 }
