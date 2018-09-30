@@ -9,8 +9,8 @@ public class PlayerController : MonoBehaviour {
 
     Rigidbody rb;
     Vector3 moveDirection;
-    private bool boxCollision;
     public float boxRange = 5;
+    private boxScript box;
 
 
     private Vector3 jumpVector = new Vector3(0, 1.5f, 0);
@@ -29,12 +29,12 @@ public class PlayerController : MonoBehaviour {
         //calculate direction vector and normalize it so that user would not be walking too quickly
         moveDirection = (horizontalMovement * transform.right + verticalMovement * transform.forward).normalized;
 
-        checkForBoxCollision();
     }
 
     void FixedUpdate()
     {
         Move();
+        checkForBoxCollision();
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -56,11 +56,14 @@ public class PlayerController : MonoBehaviour {
 
             if (hit.collider.gameObject.GetComponent<boxScript>() != null)
             {
-                boxScript box = hit.collider.gameObject.GetComponent<boxScript>(); //access the box variables
+                box = hit.collider.gameObject.GetComponent<boxScript>(); //access the box variables
                 box.playerIsClose = true;
             }
-
-            //Debug.Log("Did Hit");
+        }
+        else if (box != null)
+        {
+            box.playerIsClose = false;
+            box = null;
         }
     }
 
@@ -79,12 +82,5 @@ public class PlayerController : MonoBehaviour {
 
         rb.velocity += yVelFix; //if we didnt do this, the y velocity would be 0, because it is not set in moveDirection
     }
-
-    void OnTriggerEnter(Collider other)
-    {
-        boxCollision = true;
-      //  Debug.Log("Player collided with " + other.transform.name);
-        other.attachedRigidbody.isKinematic = false;
-    }
-
+    
 }

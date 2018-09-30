@@ -23,9 +23,14 @@ public class boxScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (playerIsClose)
+        if (playerIsClose) //triggered by raycast in PlayerController
         {
             GetComponent<MeshRenderer>().material = highlightMaterial;
+
+        }
+        else
+        {
+            GetComponent<MeshRenderer>().material = originalMaterial;
 
         }
 
@@ -45,7 +50,7 @@ public class boxScript : MonoBehaviour {
             Destroy(gameObject);
         }
 	}
-
+/*
     void OnTriggerEnter(Collider other)
     {
         if (other.name == "PlayerCollider")
@@ -65,4 +70,5 @@ public class boxScript : MonoBehaviour {
            // Debug.Log("No longer in close to box");
         }
     }
+    */
 }
