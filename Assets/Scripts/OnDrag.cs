@@ -26,13 +26,13 @@ public class OnDrag : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
         boxCollision = true;
-        Debug.Log("Collided with " + other.transform.name);
+       // Debug.Log("Collided with " + other.transform.name);
     }
 
     void OnTriggerExit(Collider other)
     {
         boxCollision = false;
-        Debug.Log("No longer in contact with " + other.transform.name);
+      //  Debug.Log("No longer in contact with " + other.transform.name);
     }
     
 

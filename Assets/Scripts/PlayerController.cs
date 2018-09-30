@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour {
     Rigidbody rb;
     Vector3 moveDirection;
     private bool boxCollision;
-    public float boxRange = 1;
+    public float boxRange = 100;
 
 
     private Vector3 jumpVector = new Vector3(0, 1.5f, 0);
@@ -45,16 +45,16 @@ public class PlayerController : MonoBehaviour {
     void checkForBoxCollision()
     {
         RaycastHit hit;
-        Vector3 forwardVec = transform.TransformDirection(Vector3.forward);
-        Ray inFrontRay = new Ray(transform.position, forwardVec);
-
-        Debug.DrawRay(transform.position, forwardVec * boxRange);
-
-        if (Physics.Raycast(inFrontRay, out hit, boxRange)) {
-            if (hit.collider.tag == "environment")
-            {
-                Debug.Log("Ray hit a box");
-            }
+        // Does the ray intersect any objects excluding the player layer
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
+        {
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+            Debug.Log("Did Hit");
+        }
+        else
+        {
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
+            Debug.Log("Did not Hit");
         }
     }
 
