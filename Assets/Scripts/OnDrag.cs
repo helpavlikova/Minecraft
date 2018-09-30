@@ -5,7 +5,6 @@ using UnityEngine;
 public class OnDrag : MonoBehaviour {
 
     private Vector3 screenPoint;
-    private Vector3 offset;
     public Rigidbody redBox;
     public Rigidbody greenBox;
     public Rigidbody blueBox;
@@ -20,7 +19,6 @@ public class OnDrag : MonoBehaviour {
     {
         prefab = greenBox;
         screenPoint = Camera.main.WorldToScreenPoint(transform.position);
-        offset = transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
     }
 
     void OnTriggerEnter(Collider other)

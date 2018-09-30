@@ -15,6 +15,8 @@ public class CameraController : MonoBehaviour {
     public float sensitivityX = 15f;
     public float sensitivityY = 15f;
 
+    public float cubeDistance = 3f;
+
     public Camera cam;
     public GameObject player;
 
@@ -25,7 +27,9 @@ public class CameraController : MonoBehaviour {
 
     //offset of the camera
     private Vector3 offset;
+
     private Vector3 hitPoint;
+    private Vector3 direction;
 
     void Start()
     {
@@ -66,15 +70,11 @@ public class CameraController : MonoBehaviour {
     {
         Ray ray = cam.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
-        {
-            print("I'm looking at " + hit.transform.name);
-            hitPoint = MidPoint(transform.position, hit.point);
-        }
+        Physics.Raycast(ray, out hit);
+         // print("I'm looking at " + hit.transform.name);
 
-        else
-            print("I'm looking at nothing!");
-        
+        direction = hit.point - transform.position;
+        hitPoint = transform.position + (direction.normalized * cubeDistance);        
     }
 
 
@@ -82,13 +82,5 @@ public class CameraController : MonoBehaviour {
     {
         buildingCube.position = new Vector3(Mathf.Round(hitPoint.x), Mathf.Round(hitPoint.y), Mathf.Round(hitPoint.z)); //snaps to grid
     }
-
-    Vector3 MidPoint(Vector3 start, Vector3 end)
-    {
-        return new Vector3(
-            (start.x + end.x) / 2,
-            (start.y + end.y) / 2,
-            (start.z + end.z) / 2
-        );
-    }
+    
 }
