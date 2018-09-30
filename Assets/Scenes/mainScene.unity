@@ -637,6 +637,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 100
+  boxRange: 1
 --- !u!114 &694656188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -656,6 +657,7 @@ MonoBehaviour:
   sensitivityY: 15
   cam: {fileID: 415386237}
   player: {fileID: 694656183}
+  buildingCube: {fileID: 1717766336}
 --- !u!1 &786044508
 GameObject:
   m_ObjectHideFlags: 0

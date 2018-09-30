@@ -69,7 +69,7 @@ public class CameraController : MonoBehaviour {
         if (Physics.Raycast(ray, out hit))
         {
             print("I'm looking at " + hit.transform.name);
-            hitPoint = hit.point;
+            hitPoint = MidPoint(transform.position, hit.point);
         }
 
         else
@@ -81,5 +81,14 @@ public class CameraController : MonoBehaviour {
     void positionBox()
     {
         buildingCube.position = new Vector3(Mathf.Round(hitPoint.x), Mathf.Round(hitPoint.y), Mathf.Round(hitPoint.z)); //snaps to grid
+    }
+
+    Vector3 MidPoint(Vector3 start, Vector3 end)
+    {
+        return new Vector3(
+            (start.x + end.x) / 2,
+            (start.y + end.y) / 2,
+            (start.z + end.z) / 2
+        );
     }
 }
