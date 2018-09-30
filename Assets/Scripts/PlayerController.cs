@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour {
     Rigidbody rb;
     Vector3 moveDirection;
     private bool boxCollision;
+    public float boxRange = 1;
+
 
     private Vector3 jumpVector = new Vector3(0, 1.5f, 0);
 
@@ -26,6 +28,8 @@ public class PlayerController : MonoBehaviour {
 
         //calculate direction vector and normalize it so that user would not be walking too quickly
         moveDirection = (horizontalMovement * transform.right + verticalMovement * transform.forward).normalized;
+
+        checkForBoxCollision();
     }
 
     void FixedUpdate()
@@ -35,6 +39,22 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
+        }
+    }
+
+    void checkForBoxCollision()
+    {
+        RaycastHit hit;
+        Vector3 forwardVec = transform.TransformDirection(Vector3.forward);
+        Ray inFrontRay = new Ray(transform.position, forwardVec);
+
+        Debug.DrawRay(transform.position, forwardVec * boxRange);
+
+        if (Physics.Raycast(inFrontRay, out hit, boxRange)) {
+            if (hit.collider.tag == "environment")
+            {
+                Debug.Log("Ray hit a box");
+            }
         }
     }
 

@@ -44,7 +44,7 @@ public class boxScript : MonoBehaviour {
         {
             playerIsClose = true;
             GetComponent<MeshRenderer>().material = highlightMaterial;
-            Debug.Log("Close to box");
+           // Debug.Log("Close to box");
         }
     }
 
@@ -54,7 +54,7 @@ public class boxScript : MonoBehaviour {
         {
             playerIsClose = false;
             GetComponent<MeshRenderer>().material = originalMaterial;
-            Debug.Log("No longer in close to box");
+           // Debug.Log("No longer in close to box");
         }
     }
 }
