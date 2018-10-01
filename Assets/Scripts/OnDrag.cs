@@ -8,19 +8,23 @@ public class OnDrag : MonoBehaviour {
     public Rigidbody redBox;
     public Rigidbody greenBox;
     public Rigidbody blueBox;
-    public Rigidbody yellowBox;    
+    public Rigidbody yellowBox;
+
+    public Terrain terrain;
+    private TerrainGenerator terrainScript;    
 
     private bool isFloating = true;
     private bool boxCollision = false;
     private bool buildMode = true;
-    private enum boxColor {red, green, blue, yellow};
-    boxColor boxCol;
+    private string boxCol;
     private Rigidbody prefab;
    
     void Start()
     {
         prefab = greenBox;
         screenPoint = Camera.main.WorldToScreenPoint(transform.position);
+        terrainScript = terrain.GetComponent<TerrainGenerator>(); //access the terraingenerator script
+        boxCol = "green";
     }
 
     void OnTriggerEnter(Collider other)
@@ -50,27 +54,27 @@ public class OnDrag : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.R))
         {
             prefab = redBox;
-            boxCol = boxColor.red;
+            boxCol = "red";
         }
         
 
         if (Input.GetKeyDown(KeyCode.G))
         {
             prefab = greenBox;
-            boxCol = boxColor.green;
+            boxCol = "green";
         }
 
         if (Input.GetKeyDown(KeyCode.B))
         {
             prefab = blueBox;
-            boxCol = boxColor.blue;
+            boxCol = "blue";
         }
 
 
         if (Input.GetKeyDown(KeyCode.Y))
         {
             prefab = yellowBox;
-            boxCol = boxColor.yellow;
+            boxCol = "yellow";
         }
 
         if (buildMode)
@@ -94,6 +98,8 @@ public class OnDrag : MonoBehaviour {
         {
             Rigidbody rigidPrefab;
             rigidPrefab = Instantiate(prefab, transform.position, transform.rotation) as Rigidbody;
+            BoxData newBox = new BoxData(transform.position, boxCol);
+            terrainScript.customBoxes.Add(newBox);
         }
     }
 

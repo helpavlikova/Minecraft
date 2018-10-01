@@ -5,6 +5,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System;
 
+
 public static class SaveLoad {
 
 
@@ -62,5 +63,18 @@ public class BoxData
     public float positionX;
     public float positionY;
     public float positionZ;
-    private enum boxColor { red, green, blue, yellow };
+    public string color;
+
+    public BoxData(Vector3 position, string newColor)
+    {
+        positionX = position.x;
+        positionY = position.y;
+        positionZ = position.z;
+        color = newColor;
+    }
+
+    public void printBox()
+    {
+        Debug.Log(color + " box at position " + positionX + " " + positionY + " " + positionZ);
+    }
 }

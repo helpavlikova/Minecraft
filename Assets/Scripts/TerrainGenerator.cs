@@ -11,7 +11,7 @@ public class TerrainGenerator : MonoBehaviour {
     public Rigidbody yellowBox;
 
     private GameObject[] gameObjects;
-    public BoxData[] customBoxes;
+    public List<BoxData> customBoxes;
 
     private Vector3 boxPosition;
 
@@ -36,7 +36,8 @@ public class TerrainGenerator : MonoBehaviour {
         Debug.Log("generated OffsetX " + offsetX);
         Debug.Log("generated OffsetY " + offsetY);
 
-        generateTerrain();        
+        generateTerrain();
+        customBoxes = new List<BoxData>();        
 	}
 
     void Update()
@@ -50,6 +51,14 @@ public class TerrainGenerator : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.L))
         {
             Load();
+        }
+
+        if (customBoxes.Count != 0)
+        {
+            foreach (var box in customBoxes)
+            {
+                box.printBox();
+            }
         }
     }
 
