@@ -13,9 +13,10 @@ public class PlayerController : MonoBehaviour {
     private boxScript box;
     public Terrain terrain;
     private TerrainGenerator terrainScript;
+    public float jumpForce = 2.0f;
 
 
-    private Vector3 jumpVector = new Vector3(0, 1.5f, 0);
+    private Vector3 jumpVector = new Vector3(0, 2.0f, 0);
 
     void Awake()
     {
@@ -79,7 +80,7 @@ public class PlayerController : MonoBehaviour {
 
     void Jump()
     {
-        rb.AddForce(jumpVector, ForceMode.Impulse);
+        rb.AddForce(jumpVector * jumpForce, ForceMode.Impulse);
        // Debug.Log("Jump");
     }
 
@@ -141,6 +142,7 @@ public class PlayerController : MonoBehaviour {
     void generateNewTerrain()
     {
         rb.velocity = Vector3.zero;
+        transform.position = new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z);
         terrainScript.DestroyEnvironment();
         terrainScript.generateTerrain();
     }

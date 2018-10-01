@@ -15,7 +15,7 @@ public class CameraController : MonoBehaviour {
     public float sensitivityX = 15f;
     public float sensitivityY = 15f;
 
-    public float cubeDistance = 3f;
+    public float cubeDistance = 5f;
 
     public Camera cam;
     public GameObject player;
@@ -54,8 +54,9 @@ public class CameraController : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.Escape))
         {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            //Cursor.lockState = CursorLockMode.None;
+            //Cursor.visible = true;
+            Application.Quit();
         }
 
         Camera.main.transform.position = player.transform.position + offset;
