@@ -53,13 +53,28 @@ public class TerrainGenerator : MonoBehaviour {
             Load();
         }
 
-        if (customBoxes.Count != 0)
+        if (Input.GetKeyDown(KeyCode.T))
         {
-            foreach (var box in customBoxes)
+            Debug.Log("Deleting scene for testing purposes");
+            DestroyEnvironment();
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            recreateCustomBoxes();
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if (customBoxes.Count != 0)
             {
-                box.printBox();
+                foreach (var box in customBoxes)
+                {
+                    box.printBox();
+                }
             }
         }
+               
     }
 
     void generateTerrain()
@@ -136,6 +151,37 @@ public class TerrainGenerator : MonoBehaviour {
         for (int i = 0; i < gameObjects.Length; i++)
         {
             Destroy(gameObjects[i]);
+        }
+    }
+
+    void recreateCustomBoxes()
+    {
+
+        if (customBoxes.Count != 0)
+        {
+            foreach (var box in customBoxes)
+            {
+                Vector3 pos = new Vector3(box.positionX, box.positionY, box.positionZ);
+                Rigidbody rigidPrefab;
+
+                switch (box.color)
+                {
+                    case "red":
+                        rigidPrefab = Instantiate(redBox, pos, transform.rotation) as Rigidbody;
+                        break;
+                    case "green":
+                        rigidPrefab = Instantiate(greenBox, pos, transform.rotation) as Rigidbody;
+                        break;
+                    case "blue":
+                        rigidPrefab = Instantiate(blueBox, pos, transform.rotation) as Rigidbody;
+                        break;
+                    case "yellow":
+                        rigidPrefab = Instantiate(yellowBox, pos, transform.rotation) as Rigidbody;
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
     }
 }
