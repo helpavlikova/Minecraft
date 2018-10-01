@@ -94,11 +94,11 @@ public class PlayerController : MonoBehaviour {
         rb.velocity += yVelFix; //if we didnt do this, the y velocity would be 0, because it is not set in moveDirection
     }
 
-    void checkForTerrainBorder()
+    void checkForTerrainBorder() //whenever we get to the border of currently generated terrain, we generate new and pass perlin noise the correct numbers (width, height, begin)
     {
         if (transform.position.x >= terrainScript.width)
         {
-            Debug.Log("x > width");
+           // Debug.Log("x > width");
             terrainScript.beginX = terrainScript.width;
             terrainScript.beginY = 0;
 
@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour {
         }
         else if (transform.position.x < 0)
         {
-            Debug.Log("x < 0");
+           // Debug.Log("x < 0");
             terrainScript.beginX = -terrainScript.width;
             terrainScript.beginY = 0;
 
@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour {
         }
         else if (transform.position.z < 0)
         {
-            Debug.Log("z < 0");
+           // Debug.Log("z < 0");
             terrainScript.beginX = 0;
             terrainScript.beginY = -terrainScript.height;
 
@@ -129,7 +129,7 @@ public class PlayerController : MonoBehaviour {
         }
         else if (transform.position.z >= terrainScript.height)
         {
-            Debug.Log("z > heigth");
+           // Debug.Log("z > heigth");
             terrainScript.beginX = 0;
             terrainScript.beginY = terrainScript.height;
 

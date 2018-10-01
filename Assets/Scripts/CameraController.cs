@@ -67,7 +67,7 @@ public class CameraController : MonoBehaviour {
 
     }
 
-    void cameraRayTest()
+    void cameraRayTest() //for raycast via camera viewpoint
     {
         Ray ray = cam.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
         RaycastHit hit;

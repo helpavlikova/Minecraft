@@ -34,8 +34,8 @@ public class TerrainGenerator : MonoBehaviour {
         offsetX = Random.Range(0f, 99999f);
         offsetY = Random.Range(0f, 99999f);
 
-        Debug.Log("generated OffsetX " + offsetX);
-        Debug.Log("generated OffsetY " + offsetY);
+        //Debug.Log("generated OffsetX " + offsetX);
+        //Debug.Log("generated OffsetY " + offsetY);
 
         generateTerrain();
         customBoxes = new List<BoxData>();        
@@ -53,10 +53,10 @@ public class TerrainGenerator : MonoBehaviour {
         {
             Load();
         }
-
+/*
         if (Input.GetKeyDown(KeyCode.T))
         {
-            Debug.Log("Deleting scene for testing purposes");
+          //  Debug.Log("Deleting scene for testing purposes");
             DestroyEnvironment();
         }
 
@@ -74,7 +74,7 @@ public class TerrainGenerator : MonoBehaviour {
                     box.printBox();
                 }
             }
-        }
+        }*/
                
     }
 
@@ -140,11 +140,11 @@ public class TerrainGenerator : MonoBehaviour {
         generateTerrain();
         recreateCustomBoxes();
 
-        Debug.Log("loaded OffsetX " + offsetX);
-        Debug.Log("loaded OffsetY " + offsetY);
+        //Debug.Log("loaded OffsetX " + offsetX);
+      //  Debug.Log("loaded OffsetY " + offsetY);
 
-        Debug.Log("loaded startpoint X " + loadedStartPoints[0]);
-        Debug.Log("loaded startpoint Y " + loadedStartPoints[1]);
+       // Debug.Log("loaded startpoint X " + loadedStartPoints[0]);
+       // Debug.Log("loaded startpoint Y " + loadedStartPoints[1]);
     }
 
     public void DestroyEnvironment()

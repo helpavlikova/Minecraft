@@ -25,7 +25,7 @@ public class boxScript : MonoBehaviour {
 
         if (playerIsClose) //triggered by raycast in PlayerController
         {
-            GetComponent<MeshRenderer>().material = highlightMaterial;
+            GetComponent<MeshRenderer>().material = highlightMaterial; //if player is close enough to destroy a box, it will show as higlighted
 
         }
         else
@@ -37,7 +37,7 @@ public class boxScript : MonoBehaviour {
 
         if (playerIsClose && Input.GetMouseButton(0))
         {
-            hardness--;
+            hardness--; //destroying the box
             Debug.Log(hardness);
             emission.enabled = true;
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//the script which operates the box building process
 public class OnDrag : MonoBehaviour {
     
     public Rigidbody redBox;
