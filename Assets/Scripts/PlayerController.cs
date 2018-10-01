@@ -95,22 +95,50 @@ public class PlayerController : MonoBehaviour {
 
     void checkForTerrainBorder()
     {
-        if (transform.position.x >= 50)
+        if (transform.position.x >= terrainScript.width)
         {
-            Debug.Log("x > 50");
+            Debug.Log("x > width");
+            terrainScript.beginX = terrainScript.width;
+            terrainScript.beginY = 0;
+
+            terrainScript.width += terrainScript.width;
+
+            terrainScript.DestroyEnvironment();
+            terrainScript.generateTerrain();
         }
         else if (transform.position.x < 0)
         {
             Debug.Log("x < 0");
+            terrainScript.beginX = -terrainScript.width;
+            terrainScript.beginY = 0;
+
+            terrainScript.width -= terrainScript.width;
+
+            terrainScript.DestroyEnvironment();
+            terrainScript.generateTerrain();
         }
         else if (transform.position.z < 0)
         {
             Debug.Log("z < 0");
+            terrainScript.beginX = 0;
+            terrainScript.beginY = -terrainScript.height;
+
+            terrainScript.height -= terrainScript.height;
+
+            terrainScript.DestroyEnvironment();
+            terrainScript.generateTerrain();
 
         }
-        else if (transform.position.z >= 50)
+        else if (transform.position.z >= terrainScript.height)
         {
-            Debug.Log("z > 50");
+            Debug.Log("z > heigth");
+            terrainScript.beginX = 0;
+            terrainScript.beginY = terrainScript.height;
+
+            terrainScript.height += terrainScript.height;
+
+            terrainScript.DestroyEnvironment();
+            terrainScript.generateTerrain();
 
         }
     }

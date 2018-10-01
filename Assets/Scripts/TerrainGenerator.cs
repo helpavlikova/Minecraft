@@ -17,8 +17,8 @@ public class TerrainGenerator : MonoBehaviour {
     private Vector3 boxPosition;
 
     //world size
-    private int width = 50;
-    private int height = 50;
+    public int width = 50;
+    public int height = 50;
     public int depth = 20; //height on Y axis
 
     //perlin noise variables
@@ -78,11 +78,11 @@ public class TerrainGenerator : MonoBehaviour {
                
     }
 
-    void generateTerrain()
+    public void generateTerrain()
     {
-        for (int i = beginX; i < beginX+ width; i++)
+        for (int i = beginX; i <  width; i++)
         {
-            for (int j = beginY; j < beginY + height; j++)
+            for (int j = beginY; j < height; j++)
             {
                 float boxHeight = Mathf.Round(calculateHeight(i, j));
                 boxPosition = new Vector3(i, boxHeight, j);
@@ -92,7 +92,7 @@ public class TerrainGenerator : MonoBehaviour {
         }
     }
 
-    void generateBox(float boxHeight)
+    public void generateBox(float boxHeight)
     {
         Rigidbody rigidPrefab;
 
@@ -147,7 +147,7 @@ public class TerrainGenerator : MonoBehaviour {
         Debug.Log("loaded startpoint Y " + loadedStartPoints[1]);
     }
 
-    void DestroyEnvironment()
+    public void DestroyEnvironment()
     {
         gameObjects = GameObject.FindGameObjectsWithTag("environment");
 
