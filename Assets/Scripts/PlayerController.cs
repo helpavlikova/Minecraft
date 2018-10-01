@@ -103,8 +103,7 @@ public class PlayerController : MonoBehaviour {
 
             terrainScript.width += terrainScript.width;
 
-            terrainScript.DestroyEnvironment();
-            terrainScript.generateTerrain();
+            generateNewTerrain();
         }
         else if (transform.position.x < 0)
         {
@@ -114,8 +113,7 @@ public class PlayerController : MonoBehaviour {
 
             terrainScript.width -= terrainScript.width;
 
-            terrainScript.DestroyEnvironment();
-            terrainScript.generateTerrain();
+            generateNewTerrain();
         }
         else if (transform.position.z < 0)
         {
@@ -125,8 +123,7 @@ public class PlayerController : MonoBehaviour {
 
             terrainScript.height -= terrainScript.height;
 
-            terrainScript.DestroyEnvironment();
-            terrainScript.generateTerrain();
+            generateNewTerrain();
 
         }
         else if (transform.position.z >= terrainScript.height)
@@ -136,11 +133,16 @@ public class PlayerController : MonoBehaviour {
             terrainScript.beginY = terrainScript.height;
 
             terrainScript.height += terrainScript.height;
-
-            terrainScript.DestroyEnvironment();
-            terrainScript.generateTerrain();
+            generateNewTerrain();
 
         }
+    }
+
+    void generateNewTerrain()
+    {
+        rb.velocity = Vector3.zero;
+        terrainScript.DestroyEnvironment();
+        terrainScript.generateTerrain();
     }
 
 
