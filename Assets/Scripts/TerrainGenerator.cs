@@ -5,31 +5,32 @@ using UnityEngine;
 [System.Serializable]
 public class TerrainGenerator : MonoBehaviour {
 
+    //prefab boxes
     public Rigidbody redBox;
     public Rigidbody greenBox;
     public Rigidbody blueBox;
     public Rigidbody yellowBox;
 
-    private GameObject[] gameObjects;
-    public List<BoxData> customBoxes;
+    private GameObject[] gameObjects; //to handle all objects in scene for deleting purposes 
+    public List<BoxData> customBoxes; //to store user made boxes
 
     private Vector3 boxPosition;
 
+    //world size
     private int width = 50;
     private int height = 50;
     public int depth = 20; //height on Y axis
 
+    //perlin noise variables
     public float scale = 10f;
     public float offsetX;
     public float offsetY;
-
     public int beginX = 0;
     public int beginY = 0;
-
-    // Use this for initialization
+    
     void Start ()
     {
-
+        //randomization of map generated
         offsetX = Random.Range(0f, 99999f);
         offsetY = Random.Range(0f, 99999f);
 
@@ -129,6 +130,7 @@ public class TerrainGenerator : MonoBehaviour {
 
         float[] loadedOffsets = loadedData.offsets;
         int[] loadedStartPoints = loadedData.beginCoords;
+        customBoxes = loadedData.boxes;
 
         offsetX = loadedOffsets[0];
         offsetY = loadedOffsets[1];
@@ -136,6 +138,7 @@ public class TerrainGenerator : MonoBehaviour {
 
         DestroyEnvironment();
         generateTerrain();
+        recreateCustomBoxes();
 
         Debug.Log("loaded OffsetX " + offsetX);
         Debug.Log("loaded OffsetY " + offsetY);

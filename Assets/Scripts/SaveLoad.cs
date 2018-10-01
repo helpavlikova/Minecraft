@@ -44,7 +44,7 @@ public class WorldData {
     public float[] offsets; //offsets to generate terrain via perlin noise
     public int[] beginCoords;
 
-    public BoxData[] boxes;
+    public List<BoxData>boxes;
 
     public WorldData(TerrainGenerator terrainData)
     {
@@ -55,9 +55,12 @@ public class WorldData {
         beginCoords = new int[2];
         beginCoords[0] = terrainData.beginX;
         beginCoords[1] = terrainData.beginY;
+
+        boxes = terrainData.customBoxes;
     }
 }
 
+[Serializable]
 public class BoxData
 {
     public float positionX;
