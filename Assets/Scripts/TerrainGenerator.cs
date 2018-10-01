@@ -80,9 +80,9 @@ public class TerrainGenerator : MonoBehaviour {
 
     void generateTerrain()
     {
-        for (int i = beginX; i < width; i++)
+        for (int i = beginX; i < beginX+ width; i++)
         {
-            for (int j = beginY; j < height; j++)
+            for (int j = beginY; j < beginY + height; j++)
             {
                 float boxHeight = Mathf.Round(calculateHeight(i, j));
                 boxPosition = new Vector3(i, boxHeight, j);

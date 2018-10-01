@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour {
     Vector3 moveDirection;
     public float boxRange = 10;
     private boxScript box;
+    public Terrain terrain;
+    private TerrainGenerator terrainScript;
 
 
     private Vector3 jumpVector = new Vector3(0, 1.5f, 0);
@@ -18,6 +20,12 @@ public class PlayerController : MonoBehaviour {
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+    }
+
+    void Start()
+    {
+
+        terrainScript = terrain.GetComponent<TerrainGenerator>(); //access the terraingenerator script
     }
 
     void Update()
@@ -28,6 +36,8 @@ public class PlayerController : MonoBehaviour {
 
         //calculate direction vector and normalize it so that user would not be walking too quickly
         moveDirection = (horizontalMovement * transform.right + verticalMovement * transform.forward).normalized;
+
+        checkForTerrainBorder();
 
     }
 
@@ -70,7 +80,7 @@ public class PlayerController : MonoBehaviour {
     void Jump()
     {
         rb.AddForce(jumpVector, ForceMode.Impulse);
-        Debug.Log("Jump");
+       // Debug.Log("Jump");
     }
 
     void Move()
@@ -83,6 +93,28 @@ public class PlayerController : MonoBehaviour {
         rb.velocity += yVelFix; //if we didnt do this, the y velocity would be 0, because it is not set in moveDirection
     }
 
+    void checkForTerrainBorder()
+    {
+        if (transform.position.x >= 50)
+        {
+            Debug.Log("x > 50");
+        }
+        else if (transform.position.x < 0)
+        {
+            Debug.Log("x < 0");
+        }
+        else if (transform.position.z < 0)
+        {
+            Debug.Log("z < 0");
+
+        }
+        else if (transform.position.z >= 50)
+        {
+            Debug.Log("z > 50");
+
+        }
+    }
 
 
-}
+
+    }
